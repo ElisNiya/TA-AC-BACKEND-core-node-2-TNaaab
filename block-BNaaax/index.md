@@ -4,5 +4,6 @@ writeCode
 2. console.log(\_\_filename);
 3. use path module to join `__dirname` and `server.js`
 
-
+var path = require('path')
 Users/elis/Desktop/DevTools/AltCampus/node.js
+var serverPath = path.join(__dirname, 'server.js')
