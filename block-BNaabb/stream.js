@@ -8,10 +8,16 @@ send captured data in response using res.write
 
 var http= require('http')
 var server = http.createServer(handleRequest)
-server.listen(3456)
 function handleRequest(req, res){
-  if (req.method === 'POST'){
-    res.setHeader('Content-type', 'text/plain')
-    res.end('data')
-  }
+  var store = '';
+  req.on('data',(chunk) => {
+    store += chunk
+  })
+  req.on('end', () => {
+  res.write(store);
+    res.end()
+  })
 }
+
+server.listen(3456)
+
