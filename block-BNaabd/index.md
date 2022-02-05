@@ -7,3 +7,19 @@ writeCode
 - send json data from postman using `POST` request on `/json` and parse it into the server.
 - send form data from postman using `POST` request on `/form` and parse it into the server.
 - send in response the entire data received by server.
+
+
+var http= require('http')
+var server = http.createServer(handleRequest)
+function handleRequest(req, res){
+  var store = '';
+  req.on('data',(chunk) => {
+    store += chunk
+  })
+  req.on('end', () => {
+  res.write(store);
+    res.end()
+  })
+}
+
+server.listen(7000)
