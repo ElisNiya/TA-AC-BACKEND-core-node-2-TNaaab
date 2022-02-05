@@ -11,7 +11,7 @@ writeCode
 
 var http= require('http')
 var server = http.createServer(handleRequest)
-var qs = ''
+var qs = require('queryString')
 function handleRequest(req, res){
   var store = '';
   req.on('data',(chunk) => {
