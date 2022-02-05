@@ -47,3 +47,34 @@ You have to basically handle 2 routes
 ##### Note:-
 - action attribute determines the route which will be requested on server side
 - method defines HTTP method used to submit the form(ideally POST)
+```js
+
+var path = require('path')
+
+
+var indexPath = path.join(__dirname, 'index.html')
+
+var http= require('http') 
+
+var server = http.createServer(handleRequest) 
+
+
+
+function handleRequest(req, res){ 
+
+if(req.method === 'POST' && req.url ==='/){ 
+  var store = ''; 
+  req.on('data',(chunk) => { 
+  store += chunk })
+  .on('end', () => {
+    res.statusCode = 201;
+    var parsedData = qs.parse(store)
+    res.end(JSON.stringify(parsedData))
+  }); 
+}
+
+  
+
+
+server.listen(3000)
+```
